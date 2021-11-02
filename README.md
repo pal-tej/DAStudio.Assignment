@@ -10,7 +10,7 @@ The API backend is accessed via TransactionDataStore service class, there are tw
 
 Rest evenrthing is organized as VIewModel and Model, two model classes namely Transaction & TransactionDetail are hydrated by the incoming json response from the backend. NewtonSoft package is used for json serialization.
 
-There are two screenshots to have see what it look like so far on my phone.
+There are two screenshots, about what it look like so far on my phone.
 1635836138684.jpg
 1635836138688.jpg
 
