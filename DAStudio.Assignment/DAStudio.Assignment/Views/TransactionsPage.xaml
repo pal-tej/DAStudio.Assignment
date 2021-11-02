@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAStudio.Assignment.Views.TransactionsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:DAStudio.Assignment.ViewModels"  
+             xmlns:model="clr-namespace:DAStudio.Assignment.Models"  
+             x:Name="BrowseItemsPage">
+
+
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <RefreshView x:DataType="local:TransactionsViewModel" Command="{Binding LoadTransactionsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="TransactionsListView"
+                ItemsSource="{Binding Transactions}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:Transaction">
+                        <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, *">
+                            <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0"
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" TextColor="Blue"
+                            FontSize="24" HorizontalOptions="Start" Margin="4"/>
+                            <Label Text="{Binding PaidAmount, StringFormat='{0:C}'}" Grid.Row="0"  Grid.Column="1" TextColor="DarkBlue"
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="18" HorizontalOptions="End" Margin="4" />
+                            
+                            <Label Text="{Binding BankName}" Grid.Row="1" Grid.Column="0"
+                            LineBreakMode="NoWrap"  FontSize="14" FontAttributes="Bold"
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            HorizontalOptions="Start" Margin="4"/>
+                            <Label Text="{Binding CreatedAtDateTime}" Grid.Row="1"  Grid.Column="1"
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="14" HorizontalOptions="End" Margin="4" />
+
+                            <Label Text="{Binding TransferType}" Grid.Row="2" Grid.Column="0"
+                            LineBreakMode="NoWrap"  FontSize="14" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            HorizontalOptions="Start" Margin="4"/>
+                            <Label Text="{Binding Status}" Grid.Row="2"  Grid.Column="1"
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="14" HorizontalOptions="End" Margin="4" />
+                            
+                        </Grid>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:TransactionsViewModel}}, Path=TransactionTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

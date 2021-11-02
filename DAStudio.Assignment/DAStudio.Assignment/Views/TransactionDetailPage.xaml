@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DAStudio.Assignment.Views.TransactionDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0"  Margin="4" >
+            <Label Text="Transaction Details" HorizontalTextAlignment="Center" TextColor="White" FontSize="24"  Margin="4" />
+        </Frame>
+        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *">
+            <StackLayout Grid.Row="0" Grid.Column="0">
+                <Label Text="Reference Number:" FontSize="Small" />
+                <Label Text="{Binding ReferenceNumber}" FontSize="Medium"/>
+            </StackLayout>
+            <StackLayout Grid.Row="0" Grid.Column="1">
+                <Label Text="CF Number:" FontSize="Small" />
+                <Label Text="{Binding CfNumber}" FontSize="Medium"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" Grid.Column="0">
+                <Label Text="Name:" FontSize="Small" />
+                <Label Text="{Binding Name}" FontSize="Medium"/>
+            </StackLayout>
+            <StackLayout Grid.Row="1" Grid.Column="1">
+                <Label Text="Name:" FontSize="Small" />
+                <Label Text="{Binding Name}" FontSize="Medium"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" Grid.Column="0">
+                <Label Text="Bank Name:" FontSize="Small" />
+                <Label Text="{Binding BankName}" FontSize="Medium"/>
+            </StackLayout>
+            <StackLayout Grid.Row="2" Grid.Column="1">
+                <Label Text="Date:" FontSize="Small" />
+                <Label Text="{Binding CreatedAtDateTime}" FontSize="Medium"/>
+            </StackLayout>
+            
+        </Grid>
+
+        <Grid ColumnDefinitions="*,*" >
+            <Button Grid.Column="0" Text="New Transaction" Margin="8" />
+            <Button Grid.Column="1" Text="Send Receipt" Margin="8" BackgroundColor="DarkGray" />
+        </Grid>
+    </StackLayout>
+    
+</ContentPage>
